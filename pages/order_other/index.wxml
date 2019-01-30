@@ -1,0 +1,265 @@
+      
+<!--拼团信息start-->
+    <view class='view_padding_left' style='background-color:white;padding-top:20rpx;padding-bottom:20rpx;;' >
+      <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">当前参团人数：<label style="font-weight:bold;color:#ED1C24;">{{ping.finish_num}}</label></span>
+         <span class="span_label_right">优惠金额: ￥<label style="font-weight:bold;color:#ED1C24;">{{ping.bonus}}</label></span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view>
+
+      <!--content-->
+      <view style="padding-top:20rpx;padding-left:10%;padding-right:10%;">
+          <view style="text-align:center;">
+               <image wx:for="{{avatars}}" wx:for-index="index" class="pt_image" src="{{avatars[index]}}"/>
+              
+          </view>
+          <view style="text-align:center;padding-top:20rpx;font-size:24rpx;color:#666666;">
+          拼团中，剩余时间 {{ping.expired}}
+          </view>
+          
+      </view>
+    </view>
+      <!--拼团信息end-->
+
+
+ <!--订单start-->
+     <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:20rpx;' >
+       <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">订单信息</span>
+        <span class="span_label_right">产品总金额: ￥<label style="font-weight:bold;color:#ED1C24;">{{price}}</label></span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view> 
+      <!--content-->
+      <view style="padding-top:20rpx;font-size:26rpx;color:#666666;line-height:50rpx;margin-left:20rpx;" >    
+        <text wx:for="{{setups}}" wx:for-item="setup">{{setup.desc}} x {{setup.num}} \n</text>
+          
+      </view>
+
+    </view> 
+   <!--订单end-->
+
+
+
+ <!--按揭start-->
+     <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:20rpx;' >
+       <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">按揭测算</span>
+        <span class="span_label_right"> {{creditdesc}}</span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view> 
+      <!--content-->
+
+        <!--table-->
+      <view style="padding-top:20rpx;color:#666666;font-size:28rpx; text-align:center;width:100%;">
+
+            <view style="width:100%;display: flex;flex-direction:row；height:70rpx;line-height:70rpx;font-size:23rpx;border-top:1px #e8e8e8 solid;border-bottom:1px #e8e8e8 solid;">
+              <view style="width:20%;border-right:1rpx #e8e8e8 solid;border-left:1px #e8e8e8 solid;">首付比例</view>
+              <view  style="width:20%;border-right:1rpx #e8e8e8 solid;">首付金额</view>
+              <view  style="width:20%;border-right:1rpx #e8e8e8 solid;">付款期限</view>    
+              <view style="width:20%;border-right:1rpx #e8e8e8 solid;" >预计总价</view>  
+              <view style="width:20%;border-right:1rpx #e8e8e8 solid;" >月均还款</view>      
+          </view>
+
+          <view wx:for="{{product.credit}}" wx:for-index="index" wx:for-item="credit" style="width:100%;display: flex;flex-direction:row；height:70rpx;line-height:70rpx;border-bottom:1px #e8e8e8 solid;">
+              <view style="width:20%;border-right:1rpx #e8e8e8 solid;border-left:1px #e8e8e8 solid;">{{credit.bili}}</view>
+              <view  style="width:20%;border-right:1rpx #e8e8e8 solid;">{{credit.shoufu}}</view>
+              <view  style="width:20%;border-right:1rpx #e8e8e8 solid;">{{credit.time}}</view>    
+              <view style="width:20%;border-right:1rpx #e8e8e8 solid;" >{{credit.total}}</view>  
+              <view style="width:20%;border-right:1rpx #e8e8e8 solid;" >{{credit.month}}</view>      
+          </view>
+ 
+      </view>
+   
+
+    </view> 
+   <!--按揭end-->
+   
+    <!--个人信息start-->
+     <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;' >
+       <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">个人信息</span>
+   
+      </view>
+
+      <!--line-->
+      <view class='line'></view> 
+      <!--content-->
+     
+
+    
+  <view  class='table_item' style="display:flex;flex-flow:row nowrap;justify-content:flex-start;vertical-align:middle;">
+    <view >
+        <label class='table_item_label' style='vertical-align:middle'><text decode="{{true}}" space="{{true}}">姓&nbsp;&nbsp;&nbsp;名</text></label>
+    </view>
+    <view class='input' style='text-align:left;margin-left:20rpx;'>
+        <input bindinput='name_input' value="{{user.name}}"></input>
+    </view>
+  </view>
+
+  <view class='line1'></view>
+
+  <view  class='table_item' style="display:flex;flex-flow:row nowrap;justify-content:flex-start;vertical-align:middle;">
+    <view >
+      <label class='table_item_label' style='vertical-align:middle'><text decode="{{true}}" space="{{true}}">手&nbsp;&nbsp;&nbsp;机</text></label>
+    </view>
+    <view class='input' style='text-align:left;margin-left:20rpx;vertical-align:middle'>
+    
+        <input wx:if="{{user.phone}}" bindinput='phone_input' value="{{user.phone}}" disabled='disabled'></input>
+    </view>
+
+  </view>
+
+
+
+    <view class='line1'></view>
+      <view  class='table_item' style="display:flex;flex-flow:row nowrap;justify-content:flex-start;vertical-align:middle;">
+        <view >
+            <label class='table_item_label' style='vertical-align:middle'><text decode="{{true}}" space="{{true}}">户籍地</text></label>
+        </view>
+        <view class='input' style='text-align:left;margin-left:20rpx;'>
+            <picker mode="selector" bindchange="bindlocationChange" value="{{locationIndex}}" range="{{provinces}}">
+                <view class="picker">{{provinces[locationIndex]}}</view>
+            </picker>
+        </view>
+      </view>
+
+    <view class='line1'></view>
+      <view  class='table_item' style="display:flex;flex-flow:row nowrap;justify-content:flex-start;vertical-align:middle;">
+        <view >
+            <label class='table_item_label' style='vertical-align:middle'><text decode="{{true}}" space="{{true}}">施工地</text></label>
+        </view>
+        <view class='input' style='text-align:left;margin-left:20rpx;'>
+            <picker mode="selector" bindchange="bindshigongChange" value="{{shigongIndex}}" range="{{provinces}}">
+                <view class="picker">{{provinces[shigongIndex]}}</view>
+            </picker>
+        </view>
+      </view>
+
+      <view class='line1'></view>
+      <view  class='table_item' style="display:flex;flex-flow:row nowrap;justify-content:flex-start;vertical-align:middle;">
+        <view >
+            <label class='table_item_label' style='vertical-align:middle'><text decode="{{true}}" space="{{true}}">备&nbsp;&nbsp;&nbsp;注</text></label>
+        </view>
+        <view class='input' style='text-align:left;margin-left:20rpx;'>
+            <input bindinput='remark_input' value=""></input>
+        </view>
+      </view>
+
+  </view> 
+
+
+
+   <!--个人信息end-->
+   
+    <!--支付start-->
+     <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:20rpx;' >
+       <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">支付方式</span>
+   
+      </view>
+
+      <!--line-->
+      <view class='line'></view> 
+      <!--content-->
+      <view style="padding-top:20rpx;font-size:28rpx;color:#666666;height:50rpx;" >    
+        <view style="float:left;"><image src="/images/wxpay.png" style="height:50rpx;width:185rpx;"></image></view>
+        <view style="float:right;"><image src="/images/dui.png" style="height:50rpx;width:50rpx;"></image></view>
+          
+      </view>
+
+    </view> 
+   <!--支付end-->
+
+
+
+<!--拼团步骤start-->
+  <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:150rpx;'>
+
+    <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">拼团步骤</span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view>
+
+      <!--detail-->
+      <view class='order_process' style='padding-top:20rpx;'>
+        <view class='process_wrap'>
+          <view class='process'>
+              <view class='process_line'></view>
+              <view class="view_table_right_colored" >1</view>
+              <view class='process_line' style="background:#ED1C24"></view>
+          </view>
+          <text class='process_name_colored'>选择拼团</text>
+        </view>
+
+        <view class='process_wrap'>
+          <view class='process'>
+              <view class='process_line' style="background:#ED1C24"></view>
+              <view class="view_table_right_colored" >2</view>
+              <view class='process_line' style="background:#ED1C24"></view>
+          </view>
+          <text class='process_name_colored'>支付参团</text>
+        </view>
+
+        <view class='process_wrap'>
+          <view class='process'>
+              <view class='process_line_no'></view>
+               <view class="view_table_right" >3</view>
+              <view class='process_line_no' ></view>
+          </view>
+          <text class='process_name'>邀请好友</text>
+        </view>
+
+        <view class='process_wrap'>
+          <view class='process'>
+              <view class='process_line_no' ></view>
+               <view class="view_table_right" >4</view>
+              <view class='process_line'></view>
+          </view>
+          <text class='process_name'>拼团成功</text>
+        </view>
+    </view>
+
+     
+
+
+  </view>
+ <!--拼团步骤end-->
+
+
+
+<!--tab start-->
+<view class="tab_bottom" style="display:flex;">
+
+
+  <!--金额-->
+  <view style="width:70%;border-right:1px  #E8E8E8 solid;">
+    <view  style="font-size:28rpx;height:100rpx;padding-top:20rpx;color:#666666;padding-left:20rpx;">实付金额：<label style="font-size:38rpx;font-weight:bolder;color:#ED1C24;">￥{{ping.sub_fee/100}}</label></view>
+    
+  </view>
+
+  <!--提交-->
+  <form bindsubmit="submit" report-submit='true' data-ping_id="{{ping._id}}" style="width:30%;text-align:center;background-color:#ED1C24">
+ 
+      <button form-type="submit"   style="font-size:28rpx;color:white;height:100rpx;line-height:100rpx;background-color:#ED1C24">确认参团</button>
+     
+
+  </form>
+</view>
+<!--tab end-->
+
+
+

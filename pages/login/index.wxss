@@ -1,0 +1,10 @@
+page{
+  background-color: #e5e5e5;
+  
+}
+
+.user_button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

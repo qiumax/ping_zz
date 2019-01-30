@@ -1,0 +1,5 @@
+<!--登录-->
+<view  class="user_button" style='margin-top:300rpx'>
+  <image src="/images/logo.png" style='width:200rpx;height:243rpx;'></image>
+  <button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style='width:50%;margin-top:80rpx'> 微信登录 </button>
+</view>

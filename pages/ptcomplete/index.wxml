@@ -1,0 +1,152 @@
+<!--拼团成功-->
+<view class="view_padding_left" style="background-color:white;text-align:center;">
+    <view class='view_image'><image src="/images/laugh.png" style="height:50rpx;width:50rpx;"/><text decode="{{true}}" space="{{true}}">&nbsp;拼团成功</text></view>
+    <view style="font-size:35rpx;color:#ED1C24;padding-top:20rpx;padding-bottom:50rpx;">等待客户经理联系</view>
+</view>
+
+
+<!--拼团信息-->
+ <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:20rpx;' >
+      <!--title-->
+      <view style="height:60rpx;">
+              <span class="span_label_left">当前参团人数：{{ping.ping_id.finish_num}}</span>
+         <span class="span_label_right">优惠金额: ￥<label style="font-weight:bold;color:#ED1C24;">{{ping.ping_id.bonus}}</label></span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view>
+
+      <!--content-->
+      <view style="padding-top:20rpx;padding-left:10%;padding-right:10%;">
+          <view style="text-align:center;">
+              <image wx:for="{{avatars}}" wx:for-index="index" class="pt_image" src="{{avatars[index]}}"/>
+          </view>
+        
+          
+      </view>
+    </view>
+
+<!--detail start-->
+ <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:20rpx;'>
+      <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">拼团凭证</span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view>
+
+       <!--content-->
+      <view style="padding-top:20rpx;padding-left:5%;padding-right:5%;">
+            <view class="pingzhen_view_first">
+                <view class="pingzhen_left">凭证编号</view>
+                <view class="pingzhen_right">{{ping._id}}</view>
+            </view>
+            <view class='dot_line'></view>
+
+            <view class="pingzhen_view">
+                <view class="pingzhen_left">客户姓名</view>
+                <view class="pingzhen_right">{{ping.name}}</view>
+            </view>
+
+            <view class='dot_line'></view>
+            <view class="pingzhen_view">
+                <view class="pingzhen_left">客户电话</view>
+                <view class="pingzhen_right">{{ping.phone}}</view>
+            </view>
+
+            <view class='dot_line'></view>
+            <view class="pingzhen_view">
+                <view class="pingzhen_left">结束时间</view>
+                <view class="pingzhen_right">{{ping.finishtime}}</view>
+            </view>
+
+
+          <view class='dot_line'></view>
+            <view class="pingzhen_view">
+                <view class="pingzhen_left">联系方式</view>
+                <view class="pingzhen_right" catchtap='makePhoneCall'>4008123311</view>
+          </view>
+
+      </view>
+ 
+ </view>
+<!--detail end-->
+
+
+ <!--订单start-->
+     <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:20rpx;' >
+       <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">订单信息</span>
+        <span class="span_label_right">订单总金额: ￥<label style="font-weight:bold;color:#ED1C24;">{{ping.price}}</label></span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view> 
+      <!--content-->
+      <view style="padding-top:20rpx;padding-left:5%;font-size:26rpx;color:#666666;line-height:50rpx;" >    
+        <text wx:for="{{ping.setupdetail}}" wx:for-item="setup">{{setup.desc}} x {{setup.num}} \n</text>
+          
+      </view>
+
+    </view> 
+   <!--订单end-->
+
+<!--拼团步骤start-->
+  <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:20rpx;'>
+
+    <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">拼团步骤</span>
+        
+      </view>
+
+      <!--line-->
+      <view class='line'></view>
+
+      <!--detail-->
+      <view class='order_process' style='padding-top:20rpx;'>
+        <view class='process_wrap'>
+          <view class='process'>
+              <view class='process_line'></view>
+              <view class="view_table_right_colored" >1</view>
+              <view class='process_line' style="background:#ED1C24"></view>
+          </view>
+          <text class='process_name_colored'>选择拼团</text>
+        </view>
+
+        <view class='process_wrap'>
+          <view class='process'>
+              <view class='process_line' style="background:#ED1C24"></view>
+              <view class="view_table_right_colored" >2</view>
+              <view class='process_line' style="background:#ED1C24"></view>
+          </view>
+          <text class='process_name_colored'>支付参团</text>
+        </view>
+
+        <view class='process_wrap'>
+          <view class='process'>
+              <view class='process_line' style="background:#ED1C24"></view>
+               <view class="view_table_right_colored" >3</view>
+              <view class='process_line' style="background:#ED1C24"></view>
+          </view>
+          <text class='process_name_colored'>邀请好友</text>
+        </view>
+
+        <view class='process_wrap'>
+          <view class='process'>
+              <view class='process_line' style="background:#ED1C24" ></view>
+               <view class="view_table_right_colored" >4</view>
+              <view class='process_line'></view>
+          </view>
+          <text class='process_name_colored'>拼团成功</text>
+        </view>
+    </view>
+
+     
+
+
+  </view>
+ <!--拼团步骤end-->
+

@@ -1,0 +1,69 @@
+/* pages/myincome/index.wxss */
+page{
+  background-color: #e5e5e5;
+  
+}
+.head_top{
+  background-image: url('https://fpf-wx-1256343243.cos.ap-guangzhou.myqcloud.com/member_bg.png');
+  background-size: 100% 100%;
+  position: fixed;
+  top:0;
+  width: 100%;
+}
+
+.view_padding_left{
+
+  width:100%;
+
+}
+
+
+.table {
+  border: 0px solid darkgray;
+}
+.tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 60rpx;
+  color: #666666;
+  align-items: center;
+  font-size: 26rpx;
+}
+.td {
+    width:33.3%;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+   
+}
+
+.bg-g{
+  background: #E6F3F9;
+}
+.th {
+  width: 33.3%;
+  justify-content: center;
+  color: #666666;
+  font-weight: bold;
+  display: flex;
+  height: 60rpx;
+  align-items: center;
+  font-size:28rpx;
+}
+
+.line{
+margin: 0 auto;
+width: 100%;
+height: 2rpx;
+background-color: #E8E8E8;
+}
+
+.xuan_bottom{
+  position: fixed;
+  bottom: 50rpx;
+  width: 110rpx;
+  height: 110rpx;
+  right: 50rpx;
+
+}

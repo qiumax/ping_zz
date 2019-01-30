@@ -1,0 +1,59 @@
+{
+  "pages": [
+    
+    "pages/index/index",
+    "pages/member/index",
+    "pages/myinfo/index",
+    "pages/order_other/index",
+    "pages/ptshare/index",
+    "pages/ptcomplete/index",
+    "pages/mypings/index",
+    "pages/myrecomm/index",
+    "pages/myincome/index",
+    "pages/policy/index",
+    "pages/mycode/index",
+    "pages/login/index"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ED1C24",
+    "navigationBarTitleText": "郑州湘元拼团",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50,
+    "navigationStyle": "default"
+  },
+    "tabBar": {
+      "backgroundColor": "#ffffff",
+      "color": "#2C3E50",
+      "selectedColor": "#ED1C24",
+      "borderStyle": "black",
+      "list": [
+        {
+          "selectedIconPath": "images/wode1.png",
+          "iconPath": "images/wode.png",
+          "pagePath": "pages/member/index",
+          "text": "个人中心"
+        },
+        {
+          "selectedIconPath": "images/pintuan1.png",
+          "iconPath": "images/pintuan.png",
+          "pagePath": "pages/mypings/index",
+          "text": "我的拼团"
+        },
+        {
+          "selectedIconPath": "images/recomm1.png",
+          "iconPath": "images/recomm.png",
+          "pagePath": "pages/myrecomm/index",
+          "text": "我的推荐"
+        },
+        {
+          "selectedIconPath": "images/income1.png",
+          "iconPath": "images/income.png",
+          "pagePath": "pages/myincome/index",
+          "text": "我的收益"
+        }
+      ]
+    }
+}

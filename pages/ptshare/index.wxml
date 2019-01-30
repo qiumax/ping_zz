@@ -1,0 +1,122 @@
+<!--拼团中-->
+<view class="view_padding_left" style="background-color:white;text-align:center;">
+    <view class='view_image'><image src="/images/laugh.png" style="height:50rpx;width:50rpx;"/><text decode="{{true}}" space="{{true}}">&nbsp;参团成功</text></view>
+    <view style="font-size:35rpx;color:#ED1C24;padding-top:20rpx;padding-bottom:50rpx;">快去邀请好友参团吧！</view>
+</view>
+
+
+<!--拼团信息-->
+ <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:20rpx;' >
+      <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">当前参团人数：{{ping.ping_id.finish_num}}</span>
+         <span class="span_label_right">优惠金额: ￥<label style="font-weight:bold;color:#ED1C24;">{{ping.ping_id.bonus}}</label></span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view>
+
+      <!--content-->
+      <view style="padding-top:20rpx;padding-left:10%;padding-right:10%;">
+          <view style="text-align:center;">
+               <image wx:for="{{avatars}}" wx:for-index="index" class="pt_image" src="{{avatars[index]}}"/>
+          </view>
+          <view style="text-align:center;padding-top:20rpx;font-size:24rpx;color:#666666;">
+          拼团中，剩余时间 {{ping.ping_id.expired}}
+          </view>
+          
+      </view>
+    </view>
+
+
+
+<!--拼团步骤start-->
+  <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:20rpx;'>
+
+    <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">拼团步骤</span>
+        
+      </view>
+
+      <!--line-->
+      <view class='line'></view>
+
+      <!--detail-->
+      <view class='order_process' style='padding-top:20rpx;'>
+        <view class='process_wrap'>
+          <view class='process'>
+              <view class='process_line'></view>
+              <view class="view_table_right_colored" >1</view>
+              <view class='process_line' style="background:#ED1C24"></view>
+          </view>
+          <text class='process_name_colored'>选择拼团</text>
+        </view>
+
+        <view class='process_wrap'>
+          <view class='process'>
+              <view class='process_line' style="background:#ED1C24"></view>
+              <view class="view_table_right_colored" >2</view>
+              <view class='process_line' style="background:#ED1C24"></view>
+          </view>
+          <text class='process_name_colored'>支付参团</text>
+        </view>
+
+        <view class='process_wrap'>
+          <view class='process'>
+              <view class='process_line' style="background:#ED1C24"></view>
+               <view class="view_table_right_colored" >3</view>
+              <view class='process_line' style="background:#ED1C24"></view>
+          </view>
+          <text class='process_name_colored'>邀请好友</text>
+        </view>
+
+        <view class='process_wrap'>
+          <view class='process'>
+              <view class='process_line_no' ></view>
+               <view class="view_table_right" >4</view>
+              <view class='process_line'></view>
+          </view>
+          <text class='process_name'>拼团成功</text>
+        </view>
+    </view>
+
+     
+
+
+  </view>
+ <!--拼团步骤end-->
+
+ <!--订单start-->
+     <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:20rpx;' >
+       <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">订单信息</span>
+        <span class="span_label_right">订单总金额: ￥<label style="font-weight:bold;color:#ED1C24;">{{ping.price}}</label></span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view> 
+      <!--content-->
+      <view style="padding-top:20rpx;padding-left:5%;font-size:26rpx;color:#666666;line-height:50rpx;" >    
+        <text wx:for="{{ping.setupdetail}}" wx:for-item="setup">{{setup.desc}} x {{setup.num}} \n</text>
+          
+      </view>
+
+    </view> 
+   <!--订单end-->
+   
+<!--分享-->
+<!--tab start-->
+<view class="tab_bottom" style="display:flex;">
+
+
+  <!--金额-->
+
+  <!--提交-->
+  <view bindtap="sharept" style="width:100%;text-align:center;background-color:#ED1C24">
+     
+     <button open-type="share" style="font-size:28rpx;color:white;height:100rpx;line-height:100rpx;background-color:#ED1C24">分享</button>
+  </view>
+</view>
+<!--tab end-->

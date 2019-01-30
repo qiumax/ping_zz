@@ -1,0 +1,160 @@
+
+    <!--导航-->
+    <view class="top_tab_view">
+    <view bindtap="tabChoice" data-tabid="0" class='top_tab'  class="{{currentId==0?'top_tab_selected':'top_tab'}}">全部</view>
+    <view bindtap="tabChoice" data-tabid="1" class='top_tab'  class="{{currentId==1?'top_tab_selected':'top_tab'}}">已结束</view>
+    <view bindtap="tabChoice" data-tabid="2" class='top_tab'  class="{{currentId==2?'top_tab_selected':'top_tab'}}">拼团中</view>
+    
+    </view>
+
+   <!--导航end-->
+
+  <!--详情展示start-->
+
+  <!--全部start-->
+<view wx:if="{{currentId==0}}">
+  <!--没有-->
+  <view wx:if="{{allpings.length==0}}" style="padding-top:50rpx;text-align:center;">
+      <view style="text-align:center;width:200rpx;height:200rpx;border-radius:50%;display:inline-block;">
+        <image src='/images/noorder1.png' style="width:150rpx;height:150rpx;padding-top:25rpx;padding-left:25rpx;"></image>
+      </view>
+      <view style="font-size:28rpx;color:#666666;padding-top:20rpx;">没有相关拼团信息</view>
+  </view>
+  <!--有记录-->
+  <view wx:if="{{allpings.length>0}}" wx:for="{{allpings}}" wx:for-index="index" wx:for-item="allping">
+
+  <!--详情start-->
+    <view bindtap="gotopingdetail" data-ping_id="{{allping._id}}" class='view_padding_left' style="{{index==0?'margin-top:5rpx;':'margin-top:13rpx;'}}">
+      <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">当前拼团人数：<label style="font-weight:bold;color:#ED1C24;">{{allping.ping_id.finish_num}}</label></span>
+         <span class="span_label_right">优惠金额: ￥<label style="font-weight:bold;color:#ED1C24;">{{allping.ping_id.bonus}}</label></span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view>
+
+      <!--content-->
+      <view style="padding-top:20rpx;padding-left:10%;padding-right:10%;">
+          <view style="text-align:center;">
+               <image wx:for="{{allping.avatars}}" wx:for-index="index1"  class="pt_image" src="{{allping.avatars[index1]}}"/>
+               
+          </view>
+          <view wx:if="{{allping.ping_id.expired !=''}}" style="text-align:center;padding-top:20rpx;font-size:24rpx;color:#666666;">
+          拼团中，剩余时间 {{allping.ping_id.expired}}
+          </view>
+          <view  wx:if="{{allping.ping_id.expired ==''}}" style="text-align:center;padding-top:20rpx;font-size:24rpx;color:#666666;">
+          已结束
+          </view>
+      </view>
+    </view>
+    <!--详情end-->  
+  </view>
+  
+</view>
+<!--全部end-->
+
+ <!--已结束start-->
+<view wx:if="{{currentId==1}}">
+  <!--没有-->
+  <view wx:if="{{succpings.length==0}}" style="padding-top:50rpx;text-align:center;">
+      <view style="text-align:center;width:200rpx;height:200rpx;border-radius:50%;display:inline-block;">
+        <image src='/images/noorder1.png' style="width:150rpx;height:150rpx;padding-top:25rpx;padding-left:25rpx;"></image>
+      </view>
+      <view style="font-size:28rpx;color:#666666;padding-top:20rpx;">没有相关拼团信息</view>
+  </view>
+
+
+<!--有记录-->
+  <view wx:if="{{succpings.length>0}}" wx:for="{{succpings}}" wx:for-index="index" wx:for-item="succping">
+
+  <!--详情start-->
+    <view bindtap="gotopingdetail" data-ping_id="{{succping._id}}" class='view_padding_left' style="{{index==0?'margin-top:5rpx;':'margin-top:13rpx;'}}">
+      <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">当前拼团人数：<label style="font-weight:bold;color:#ED1C24;">{{succping.ping_id.finish_num}}</label></span>
+         <span class="span_label_right">优惠金额: ￥<label style="font-weight:bold;color:#ED1C24;">{{succping.ping_id.bonus}}</label></span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view>
+
+      <!--content-->
+      <view style="padding-top:20rpx;padding-left:10%;padding-right:10%;">
+          <view style="text-align:center;">
+               <image wx:for="{{succping.avatars}}" wx:for-index="index2" class="pt_image" src="{{succping.avatars[index2]}}"/>
+               
+          </view>
+          <view  style="text-align:center;padding-top:20rpx;font-size:24rpx;color:#666666;">
+          已结束
+          </view>
+          
+      </view>
+    </view>
+    <!--详情end-->  
+  </view>
+
+</view>
+<!--已结束end-->
+
+
+ <!--待成团start-->
+<view wx:if="{{currentId==2}}">
+  <!--没有-->
+  <view wx:if="{{almostpings.length==0}}" style="padding-top:50rpx;text-align:center;">
+      <view style="text-align:center;width:200rpx;height:200rpx;border-radius:50%;display:inline-block;">
+        <image src='/images/noorder1.png' style="width:150rpx;height:150rpx;padding-top:25rpx;padding-left:25rpx;"></image>
+      </view>
+      <view style="font-size:28rpx;color:#666666;padding-top:20rpx;">没有相关拼团信息</view>
+  </view>
+
+
+  <!--有记录-->
+  <view wx:if="{{almostpings.length>0}}" wx:for="{{almostpings}}" wx:for-index="index" wx:for-item="almostping">
+
+  <!--详情start-->
+    <view bindtap="gotopingdetail" data-ping_id="{{almostping._id}}" class='view_padding_left' style="{{index==0?'margin-top:5rpx;':'margin-top:13rpx;'}}">
+      <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">当前拼团人数：<label style="font-weight:bold;color:#ED1C24;">{{almostping.ping_id.finish_num}}</label></span>
+         <span class="span_label_right">优惠金额: ￥<label style="font-weight:bold;color:#ED1C24;">{{almostping.ping_id.bonus}}</label></span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view>
+
+      <!--content-->
+      <view style="padding-top:20rpx;padding-left:10%;padding-right:10%;">
+          <view style="text-align:center;">
+               <image wx:for="{{almostping.avatars}}" wx:for-index="index3" class="pt_image" src="{{almostping.avatars[index3]}}"/>
+               
+          </view>
+          <view wx:if="{{almostping.ping_id.expired !=''}}" style="text-align:center;padding-top:20rpx;font-size:24rpx;color:#666666;">
+          拼团中，剩余时间 {{almostping.ping_id.expired}}
+          </view>
+          
+      </view>
+    </view>
+    <!--详情end-->  
+  </view>
+
+</view>
+
+
+
+<!--待成团end-->
+
+
+
+  <!--详情展示end-->
+
+
+  <!--悬浮start-->
+<view class="xuan_bottom" catchtap='gotoHome'>
+   <view style="height:110rpx;width:110rpx;border:1rpx #BDC3C7 solid;border-radius:50%;background-color:white;">
+   <image src="/images/home1.png" style='height:55rpx;width:55rpx;padding-left:27rpx;padding-top:8rpx;display:block'/>
+    <view style="text-align:center;font-size:20rpx;color:#ED1C24;">返回拼团</view> 
+   </view>
+</view>
+<!--悬浮end-->
+

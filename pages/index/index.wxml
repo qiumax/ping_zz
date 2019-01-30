@@ -1,0 +1,331 @@
+ <!--透明度-->
+ <view style="opacity:{{opacity}}" catchtap='closemodal'>
+ <!--图片-->  
+    <view>
+       <image style="width:100%;vertical-align:middle;" src="{{toppic}}" mode="widthFix" />   
+    </view>    
+     
+
+    <!--价格start-->
+    <view class='view_padding_left' style='background-color:white;padding-top:10rpx;' >
+       <!--title-->
+      <view style="overflow:hidden" >
+        <span class="span_label_left" style="font-size:35rpx;" >{{product.name}}</span>
+      </view>
+
+      <!--content-->
+
+       <view style="padding-bottom:10rpx;padding-top:10rpx;display:flex;">
+
+          <view  class="view_table_top_price_1">
+              <view  class="view_table_price"  >  <label style='background-color:#ED1C24;width:100rpx;height:50rpx;padding:5rpx 10rpx;color:white;font-size:20rpx;border-radius:13%;'>拼团价</label></view>
+
+          </view>
+          <view  class="view_table_top_price_2">
+              <view  class="view_table_price"  ><label style="color:#ED1C24;font-size:20rpx;">￥</label><label style="color:#ED1C24;font-size:40rpx;">{{product.price_bottom}} - {{product.price_origin}}</label>
+             
+              </view>
+
+          </view>
+          
+           <view catchtap='showhongbao'>
+             <image src="/images/hongbao.png" style="width:70rpx;height:70rpx;margin-top:-20rpx" />
+          </view>
+      </view>
+
+
+    </view>
+    
+    <!--价格end-->
+ 
+
+    <!--拼团信息start-->
+    <view  wx:if="{{activitystatus>0}}" class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:20rpx;;' >
+      <!--title-->
+      <view style="height:60rpx;">
+        <span class="span_label_left">拼团信息</span>
+        <span wx:if='{{hasping && activitystatus==1}}' class="span_label_right">当前优惠金额: ￥<label style="font-weight:bold;color:#ED1C24;">{{ping.bonus}}</label></span>
+          
+      </view>
+
+      <!--line-->
+      <view class='line'></view>
+
+      <!--content-->
+      <view  style="padding-top:20rpx;display: flex;">
+          <view style="width:17%;">
+              <image style="width:100rpx;height:100rpx;border-radius:50px;vertical-align:middle;" src="/images/logo1.png"/>
+          </view>
+          <view style="width:10%;" class="span_label_left_x">
+              <view style="line-height:100rpx;">官方</view>
+              
+          </view>
+
+           <view wx:if='{{activitystatus==3}}' style="width:73%;text-align:right;padding-top:10rpx;" class="span_label_right_x">
+              <view style="line-height:40rpx;">当前拼团活动已结束</view>
+              <view style="line-height:40rpx;">下次活动开始时间待定</view>
+          </view>
+
+           <view wx:if='{{activitystatus==2}}' style="width:73%;text-align:right;padding-top:10rpx;" class="span_label_right_x">
+              <view style="line-height:40rpx;">距离开始：{{startexpired}}</view>
+              <view style="line-height:40rpx;">开始时间：<label style='color:#ED1C24'>{{starttime}}</label></view>
+          </view>
+
+          <view wx:if='{{!hasping && activitystatus==1}}' style="width:73%;text-align:right;padding-top:10rpx;" class="span_label_right_x">
+              <view style="line-height:100rpx;">下一个拼团马上开始</view>
+            
+          </view>
+          <view wx:if='{{hasping && activitystatus==1}}' style="width:48%;text-align:right;padding-top:10rpx;" class="span_label_right_x">
+              <view style="line-height:40rpx;">当前参团{{ping.finish_num}}人</view>
+              <view style="line-height:40rpx;">剩余{{expired}}</view>
+          </view>
+          <view wx:if='{{hasping && activitystatus==1}}' style="width:25%;vertical-align:middle;line-height:100rpx;">
+             <button wx:if='{{hasphone}}' bindtap="gotoOrderOther" data-pt_id="{{ping._id}}" class="view_button">去参团</button> 
+              <button wx:if='{{!hasphone}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-type='orderother' data-pt_id='{{ping._id}}' class="view_button">去参团</button>
+          </view>
+      </view>
+    </view>
+      <!--拼团信息end-->
+
+    <!--贷款start-->
+     <view  wx:if='{{pt==1}}' class='view_padding_left' style='background-color:white;margin-top:10px;padding-top:20rpx;padding-bottom:20rpx;' >
+       <!--title-->
+      
+      <!--content-->
+      <view style="padding-top:20rpx;font-size:28rpx;color:#666666;text-indent:-8rpx;" >
+      支付{{product.sub_fee}}元订金，即可参与拼团活动。一旦拼单成功，每个参与者均可享受对应的优惠（如下图），发起人可享受额外{{product.sponsor_bonus}}元优惠。
+      </view>
+
+      <!--table-->
+      <view style="padding-top:20rpx;display: flex;">
+
+          <view wx:for="{{product.rules}}" wx:for-index="index" wx:for-item="rule" class="view_table">
+              <view wx:if="{{index==0}}" class="view_table_left" style=" border-left:1rpx #E8E8E8 solid;">{{rule.num}}人团</view>
+              <view wx:if="{{index==0}}" class="view_table_right" style=" border-left:1rpx #E8E8E8 solid;">{{rule.bonus}}元</view>
+
+              <view wx:if="{{index>0}}" class="view_table_left"  >{{rule.num}}人团</view>
+              <view wx:if="{{index>0}}" class="view_table_right" >{{rule.bonus}}元</view>
+          </view>
+          
+      </view>
+    </view>
+
+   <!--贷款政策end-->
+
+
+ <!--详情start-->
+     <view class='view_padding_left' style='background-color:white;margin-top:10px;padding-bottom:20rpx;' >
+       <!--title-->
+      <view wx:if="{{showdetail==1}}" style="height:80rpx;">
+        <span bindtap="zhengce_tab" class="span_label_detail_selected" >拼团政策</span>
+        <span bindtap="detail_tab"  class="span_label_detail">产品详情</span>
+        <span bindtap="config_tab" class="span_label_detail">产品配置</span>
+      </view>
+
+      <view wx:if="{{showdetail==2}}" style="height:80rpx;">
+        <span bindtap="zhengce_tab" class="span_label_detail">拼团政策</span>
+        <span bindtap="detail_tab"  class="span_label_detail_selected">产品详情</span>
+        <span bindtap="config_tab" class="span_label_detail">产品配置</span>
+      </view>
+
+      <view wx:if="{{showdetail==3}}" style="height:80rpx;">
+        <span bindtap="zhengce_tab" class="span_label_detail"  >拼团政策</span>
+        <span bindtap="detail_tab"  class="span_label_detail"  >产品详情</span>
+        <span bindtap="config_tab" class="span_label_detail_selected"  >产品配置</span>
+      </view>
+
+      <!--line-->
+      <view class='line'></view>
+
+      <!--content-->
+      <view style="padding-top:20rpx;padding-bottom:10rpx;">
+
+
+   <!--贷款政策end-->
+           <image  wx:if='{{showdetail==1}}' style="width:100%;vertical-align:middle;height:98vh;padding-top:20rpx;"  src="{{zhengce}}" mode="widthFix" />
+        
+          <image  wx:if='{{showdetail==2}}' style="width:100%;vertical-align:middle;height:98vh;padding-top:20rpx;"  src="{{detail}}" mode="widthFix" />
+          <image  wx:if='{{showdetail==3}}' style="width:100%;vertical-align:middle;height:98vh;"  src="{{config}}" mode="widthFix" />
+      </view>
+
+    </view>
+<!--详情end-->
+       <view style="height:120rpx;">
+     
+      </view>
+
+</view>
+
+
+
+<!--tab start-->
+<view class="tab_bottom" style="display:flex;">
+  <!--主页-->
+    <view wx:if='{{hasphone}}' bindtap="gotoHome" style="width:20%;text-align:center;border-right:1px  #E8E8E8 solid;">
+    <view style="height:50rpx;padding-top:7rpx;"><image style="height:47rpx;width:47rpx;padding-top:1rpx;" src="/images/wode.png"/></view>
+    <view style="font-size:25rpx;height:40rpx;line-height:40rpx;">我的</view>
+  </view>
+
+  <view  wx:if='{{!hasphone}}' style="width:20%;text-align:center;border-right:1px  #E8E8E8 solid;">
+      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-type='member' class='share_btn'>
+        <view style="height:50rpx;padding-top:7rpx;"><image style="height:47rpx;width:47rpx;padding-top:1rpx;" src="/images/wode.png"/></view>
+         <view style="font-size:25rpx;height:40rpx;line-height:40rpx;">我的</view>
+     </button>
+  </view>
+
+  <view style="width:20%;text-align:center; background-color:white;">
+    <button open-type="share" class='share_btn'>
+      <view style="height:50rpx;padding-top:7rpx;"><image style="height:36rpx;width:36rpx;" src="/images/fenxiang.png"/></view>
+      <view style="font-size:25rpx;height:40rpx;line-height:40rpx;">分享</view>
+    </button>
+
+  </view>  
+
+
+
+  <!--拼-->
+ <view wx:if='{{hasphone && activitystatus==0}}'  bindtap="gotoOrderOther" data-pt_id='{{ping._id}}' style="width:60%;text-align:center;background-color:gray;">
+      <view  style="font-size:28rpx;color:white;height:100rpx;line-height:100rpx;">去参团</view>
+  </view>
+
+
+    <view wx:if='{{hasphone && activitystatus>1}}'  bindtap="gotoOrderOther" data-pt_id='{{ping._id}}' style="width:60%;text-align:center;background-color:gray;">
+      <view  style="font-size:28rpx;color:white;height:100rpx;line-height:100rpx;">去参团</view>
+  </view>
+
+    <view wx:if='{{hasphone && activitystatus==1 && !hasping}}' bindtap="gotoOrderOther" data-pt_id='{{ping._id}}' style="width:60%;text-align:center;background-color:gray;">
+      <view  style="font-size:28rpx;color:white;height:100rpx;line-height:100rpx;">去参团</view>
+  </view>
+
+<view wx:if='{{hasphone && activitystatus==1 && hasping}}' bindtap="gotoOrderOther" data-pt_id='{{ping._id}}' style="width:60%;text-align:center;background-color:#ED1C24;">
+      <view  style="font-size:28rpx;color:white;height:100rpx;line-height:100rpx;">去参团</view>
+  </view>
+
+
+
+
+ <view wx:if='{{!hasphone && activitystatus==0}}'  bindtap="gotoOrderOther" data-pt_id='{{ping._id}}' style="width:60%;text-align:center;background-color:gray;">
+      <view  style="font-size:28rpx;color:white;height:100rpx;line-height:100rpx;">去参团</view>
+  </view>
+
+    <view  wx:if='{{!hasphone && activitystatus>1 }}' style="width:60%;text-align:center;background-color:gray;">
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-type='orderother' data-pt_id='{{ping._id}}' style="background-color:gray;">
+        <view  style="font-size:28rpx;color:white;height:100rpx;line-height:100rpx;">去参团</view>
+        </button>
+    </view>
+  
+      <view  wx:if='{{!hasphone && activitystatus==1 && !hasping}}' style="width:60%;text-align:center;background-color:gray;">
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-type='orderother' data-pt_id='{{ping._id}}' style="background-color:gray;">
+        <view  style="font-size:28rpx;color:white;height:100rpx;line-height:100rpx;">去参团</view>
+        </button>
+    </view>
+
+      <view  wx:if='{{!hasphone && activitystatus==1 && hasping}}' style="width:60%;text-align:center;background-color:#ED1C24;">
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-type='orderother' data-pt_id='{{ping._id}}' style="background-color:#ED1C24;">
+        <view  style="font-size:28rpx;color:white;height:100rpx;line-height:100rpx;">去参团</view>
+        </button>
+    </view>
+
+</view>
+
+<!--弹窗-->
+<view wx:if="{{showwindow}}" style="height:80vh; position: fixed;bottom:0;background-color:white;width:100%;">
+
+<!--图片，产品名称，价格，关闭按钮-->
+<view style="display:flex;">
+  <view>
+    <image src='{{toppic}}' style="width:200rpx;height:160rpx;padding-left:20rpx;margin-top:-40rpx;"/>
+  </view>
+
+ <view style="padding-left:20rpx;font-size:29rpx;color:#666666;width:440rpx;">
+    <view style="line-height:50rpx;height:50rpx;padding-top:10rpx;color:#ED1C24;">
+        ￥{{price}}
+    </view>
+    <view style="line-height:30rpx;height:50rpx;font-size:22rpx;">
+       <span style="color:#777777;">已选 </span> <span>{{selectedinfo}}</span>
+     </view>
+ </view>
+
+  <view style="width:70rpx;" catchtap='close_tc'>
+    <image src="/images/close.png" style="width:50rpx;height:50rpx;padding-top:10rpx;"/>
+  </view>
+</view>
+
+<!--产品配置-->
+<view style="padding-left:20rpx;padding-right:20rpx;padding-top:20rpx;color:#777777;font-size:28rpx;">
+  
+  <view style="display:flex;padding-top:20rpx;padding-bottom:30rpx; justify-content: space-between;">
+    <view  catchtap='setup_choice' data-setup_id="0" class="{{setupid[0]==0?'view_selected':'view_select'}}">{{product.setup[0].desc}} <p style="color:#ED1C24">{{product.setup[0].price}}</p>
+    </view>  
+<view style=''>
+  <view class="addbtn" catchtap='num0min'>-</view>
+  <view  style="float:left;"><input class="numinput" type="number" id="num0" bindinput='num0_input' value="{{num0}}"/></view>
+  <view  class="addbtn" catchtap='num0add'>+</view>
+</view>
+    
+  </view>
+
+ <view class='line' style="margin-bottom:20rpx;"></view>
+
+  
+  <view style="display:flex;padding-top:20rpx;padding-bottom:30rpx;justify-content: space-between;">
+  
+    <view  catchtap='setup_choice' data-setup_id="1" class="{{setupid[1]==1?'view_selected':'view_select'}}">{{product.setup[1].desc}}  <p style="color:#ED1C24">{{product.setup[1].price}}</p></view>  
+
+    <view style=''>
+  <view class="addbtn" catchtap='num1min'>-</view>
+  <view  style="float:left;"><input class="numinput" type="number" id="num1" bindinput='num1_input' value="{{num1}}"/></view>
+  <view  class="addbtn" catchtap='num1add'>+</view>
+</view>
+
+  </view>
+
+ <view class='line' style="margin-bottom:20rpx;"></view>
+
+  
+  <view style="display:flex;padding-top:20rpx;padding-bottom:30rpx;">
+    <view  catchtap='setup_choice' data-setup_id="2" class="{{setupid[2]==2?'view_selected':'view_select'}}">{{product.setup[2].desc}}  <p style="color:#ED1C24">{{product.setup[2].price}}</p></view> 
+    <view  style="margin-left:30rpx;" catchtap='setup_choice' data-setup_id="3" class="{{setupid[3]==3?'view_selected':'view_select'}}">{{product.setup[3].desc}}  <p style="color:#ED1C24">{{product.setup[3].price}}</p></view>  
+</view>
+
+ <view class='line' style="margin-bottom:20rpx;"></view>
+
+
+ <view style="display:flex;padding-top:20rpx;padding-bottom:30rpx;">
+
+    <view  catchtap='setup_choice' data-setup_id="4" class="{{setupid[4]==4?'view_selected':'view_select'}}">{{product.setup[4].desc}}  <p style="color:#ED1C24">{{product.setup[4].price}}</p></view> 
+    <view style="margin-left:30rpx;" catchtap='setup_choice' data-setup_id="5" class="{{setupid[5]==5?'view_selected':'view_select'}}">{{product.setup[5].desc}}  <p style="color:#ED1C24">{{product.setup[5].price}}</p></view>  
+</view>
+
+
+</view>
+
+
+<button catchtap='joinpin' style="position:fixed;bottom:0;width:100%;background-color:#ED1C24;color:white;border-radius:0;">确认参团</button>
+</view>
+<!--tab end-->
+
+
+
+  <!--悬浮start-->
+<view class="xuan_bottom" catchtap='product_change'>
+   <view style="height:110rpx;width:110rpx;border:1rpx #BDC3C7 solid;border-radius:50%;background-color:white;">
+   <image src="/images/qiehuan.png" style='height:55rpx;width:55rpx;padding-left:27rpx;padding-top:8rpx;display:block'/>
+    <view style="text-align:center;font-size:20rpx;color:#ED1C24;">切换产品</view> 
+   </view>
+</view>
+<!--悬浮end-->
+
+
+
+<!--首次启动 弹窗--->
+
+<!--弹窗-->
+<view catchtap='closemodal' wx:if="{{showmodal}}" catchtouchmove="preventTouchMove" style="height:100%;width:100%;background-color:#000000;opacity:0.8;position:absolute;bottom:0">
+
+</view>
+
+
+<view catchtap='closemodal' wx:if="{{showmodal}}" style="color:#777777;font-size:28rpx;position: fixed;bottom:25vh;background-color:white;width:90%;margin-left:5%">
+  <image src="/images/index_hb.jpg" style="width:100%" mode="widthFix"/>
+</view>
