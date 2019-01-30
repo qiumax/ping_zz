@@ -87,7 +87,7 @@ Page({
     var location = _this.data.provinces[locationIndex]
     var shigong = _this.data.provinces[shigongIndex]
     //location不能为空
-    if (locationIndex != 1 || shigongIndex != 1) {
+    if (locationIndex != 1 && shigongIndex != 1) {
 
       //把记录存下来
       wx.request({
@@ -126,9 +126,9 @@ Page({
 
     })
     wx.showToast({
-      title: '施工地,户籍地必须为河南！',
+      title: '施工地或户籍地必须为河南！建议去相关区域代理商咨询',
       icon: 'none',
-      duration: 1000
+      duration: 5000
     })
 
     return false;

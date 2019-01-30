@@ -33,7 +33,7 @@
    <view catchtap='qrcode' data-type='70c' class='table_item' style="display:flex;flex-flow:row nowrap;justify-content:flex-start;vertical-align:middle">
     <view style='width:80%'>
       <image class='icon' src='/images/qrcode.png' style='width:35rpx;height:35rpx;vertical-align:middle' />
-      <label class='table_item_label' style='vertical-align:middle'>我的二维码 (SY70C)</label>
+      <label class='table_item_label' style='vertical-align:middle'>我的二维码 (SY65W)</label>
     </view>
     <view style='width:20%;text-align:right;margin-right:20rpx;'>
       <image src='/images/arrow.png' style='width:36rpx;height:36rpx;margin-top:32rpx;text-align:right;vertical-align:middle' />

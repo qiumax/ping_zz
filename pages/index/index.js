@@ -1174,9 +1174,9 @@ calprice:function(){
       imgurl = '/images/share_55u.jpg'
     }
 
-    name = name.substring(0,8)
+    name = name.substring(0,4)
     return {
-      title: '转发不买，也能赚大钱，'+name+'喊你来拼团。',
+      title: '【' + name + '】喊你来拼团，' + '拼得越多，优惠越多',
       imageUrl: imgurl,
       path: path
     }
