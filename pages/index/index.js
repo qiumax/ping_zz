@@ -82,6 +82,7 @@ Page({
               console.log(res)
               if(res.data.phoneNumber){
                   //更新
+                _this.setData({ hasphone: true })
                 wx.request({
                   url: 'https://'+app.globalData.host+'/api/user/updateInfo',
                   data: {
@@ -246,7 +247,7 @@ Page({
     
 
     //加载图
-    this.picchange()
+    //this.picchange()
  
   },
 
@@ -268,7 +269,7 @@ Page({
     _this.getproduct()
 
  
-    _this.picchange()
+    //_this.picchange()
     _this.setData({ setupid: [-1, -1, -1, -1, -1, -1] })
     _this.setData({ num0: 0 })
     _this.setData({ num1: 0 })
@@ -373,7 +374,10 @@ getuserphone(){
           if (!res.data.phone) {
             _this.setData({hasphone:false})
           }
-
+          else 
+          {
+            _this.setData({ hasphone: true })
+          }
           if(res.data.name)
           {
             wx.setStorageSync('name',res.data.name)
@@ -444,6 +448,7 @@ getuserphone(){
               clearInterval(_this.data.interval)
               console.log(res.data.version)
               wx.setStorageSync('picversion',res.data.version)
+              _this.picchange()
               var interval = setInterval(function () { 
                   _this.getactivity()
                
